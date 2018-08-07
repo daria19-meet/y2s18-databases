@@ -11,13 +11,16 @@ class Knowledge(Base):
 	topic=Column(String)
 	name=Column(String)
 	rating=Column(Integer)
+	hits=Column(Integer)
 
 	def __repr__(self):
 		return ("Name: {}\n"
 				"Topic: {}\n"
 				"Rating: {}\n"
+				"Hits:	{}\n"
 				"ID: {}").format(
 					self.name,
 					self.topic,
 					self.rating,
+					self.hits,
 					self.id_number)

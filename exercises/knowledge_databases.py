@@ -19,9 +19,9 @@ def add_article(name, topic, rating,hits):
 	session.add(adding)
 	session.commit()
 
-add_article("Rainbow", "Weather", 8, 7)
 add_article("Black holes", "Space", 10,5)
 add_article("Chocolate", "Food", 6,2)
+add_article("Rainbow", "Weather", 8, 7)
 
 def query_all_articles():
 	articles = session.query(Knowledge).all()
@@ -76,26 +76,9 @@ def delete_by_rating(threshhold):
 		session.query(Knowledge).filter_by(id_number=checking.id_number).delete()
 	session.commit()
 
-#delete_by_rating(7)
-
 def top_five():
-	all_articles=query_all_articles()
-	order=[]
-	if len(all_articles)>=5:
-		x=5
-	else:
-		x=len(all_articles)
-	for i in range(x):
-		for checking in range(len(all_articles)):
-			index=checking
-			if checking<len(all_articles)-1:
-				if all_articles[checking].rating<all_articles[checking+1].rating:
-					index=checking
-		order.append(all_articles[index])
-		del all_articles[index]
-	return order
-	
-				
+	all_articles=session.query(Knowledge).order_by(Knowledge.rating.desc()).all()
+	return all_articles
 
 
 

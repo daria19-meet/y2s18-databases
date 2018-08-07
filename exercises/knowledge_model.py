@@ -12,6 +12,7 @@ class Knowledge(Base):
 	name=Column(String)
 	rating=Column(Integer)
 	hits=Column(Integer)
+	#num_q=Column(Integer, default=0)
 
 	def __repr__(self):
 		return ("Name: {}\n"
